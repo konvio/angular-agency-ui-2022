@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Agency } from "../agency";
 import { AgencyService } from "../agency.service";
 import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   agencies!: Observable<Agency[]>;
 
-  constructor(private agencyService: AgencyService) {
+  constructor(private agencyService: AgencyService, private router: Router) {
   }
 
   ngOnInit() {
@@ -22,5 +23,14 @@ export class HomeComponent implements OnInit {
 
   refreshData() {
     this.agencies = this.agencyService.getAllAgencies();
+  }
+
+  onRowClick(agency: Agency) {
+    console.log(agency);
+    this._navigateToEdit(agency);
+  }
+
+  _navigateToEdit(agency: Agency) {
+    this.router.navigate(['/agencies', agency.id]);
   }
 }

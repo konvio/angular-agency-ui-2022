@@ -17,6 +17,10 @@ export class AgencyService {
     return this.http.get<Agency[]>(this.baseUrl);
   }
 
+  getAgencyById(id: string): Observable<Agency> {
+    return this.http.get<Agency>(`${this.baseUrl}/${id}`);
+  }
+
   createOrUpdateAgency(agency: Agency): Observable<Agency> {
     return this.http.put<Agency>(this.baseUrl, agency);
   }

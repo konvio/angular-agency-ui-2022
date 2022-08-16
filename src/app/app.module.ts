@@ -14,12 +14,14 @@ import { CreateAgencyComponent } from './create-agency/create-agency.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { EditAgencyComponent } from './edit-agency/edit-agency.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CreateAgencyComponent
+    CreateAgencyComponent,
+    EditAgencyComponent
   ],
   imports: [
     BrowserModule,
