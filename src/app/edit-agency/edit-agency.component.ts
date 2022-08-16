@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AgencyService } from "../agency.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
@@ -21,7 +21,11 @@ export class EditAgencyComponent implements OnInit {
     contactPerson: [null, [Validators.required]]
   });
 
-  constructor(private route: ActivatedRoute, private agencyService: AgencyService, private fb: FormBuilder) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private agencyService: AgencyService,
+    private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -36,5 +40,13 @@ export class EditAgencyComponent implements OnInit {
         console.log(this.agencyForm.value);
       }
     );
+  }
+
+  onDelete() {
+    let agencyId = this.agencyForm.value.id;
+    this.agencyService.deleteAgency(agencyId).subscribe(() => {
+      console.log(agencyId);
+      this.router.navigate(['/agencies']).then(r => console.log(r));
+    });
   }
 }
