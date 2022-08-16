@@ -10,11 +10,16 @@ import { MatButtonModule } from "@angular/material/button";
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material/table";
+import { CreateAgencyComponent } from './create-agency/create-agency.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CreateAgencyComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,10 @@ import { MatTableModule } from "@angular/material/table";
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
