@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
-import { Agency } from "../agency";
 import { AgencyService } from "../agency.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-edit-agency',
@@ -11,13 +10,31 @@ import { AgencyService } from "../agency.service";
 })
 export class EditAgencyComponent implements OnInit {
 
-  agency$!: Observable<Agency>;
+  agencyForm: FormGroup = this.fb.group({
+    id: [''],
+    name: [null, [Validators.required]],
+    country: [null, [Validators.required]],
+    countryCode: [null, [Validators.required]],
+    city: [null, [Validators.required]],
+    street: [null, [Validators.required]],
+    settlementCurrency: [null, [Validators.required]],
+    contactPerson: [null, [Validators.required]]
+  });
 
-  constructor(private route: ActivatedRoute, private agencyService: AgencyService) {
+  constructor(private route: ActivatedRoute, private agencyService: AgencyService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
     let agencyId = this.route.snapshot.paramMap.get('id') || '';
-    this.agency$ = this.agencyService.getAgencyById(agencyId);
+    this.agencyService.getAgencyById(agencyId).subscribe(agency => {
+      this.agencyForm.patchValue(agency);
+    })
+  }
+
+  onSubmit() {
+    this.agencyService.createOrUpdateAgency(this.agencyForm.value).subscribe(() => {
+        console.log(this.agencyForm.value);
+      }
+    );
   }
 }
