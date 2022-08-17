@@ -2,6 +2,13 @@ table {
   width: 100%;
 }
 
+.placeholder-container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5rem;
+}
+
 .fab-add-agency {
   position: fixed;
   right: 2rem;
@@ -14,7 +21,7 @@ table {
 
 // Columns Proportion
 .mat-column-id {
-  flex: 0 0 15%;
+  flex: 0 0 10%;
 }
 
 .mat-column-name {

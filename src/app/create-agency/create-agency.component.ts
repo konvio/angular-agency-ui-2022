@@ -4,6 +4,7 @@ import { AgencyService } from "../agency.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Agency } from "../agency";
 import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-create-agency',
@@ -25,8 +26,12 @@ export class CreateAgencyComponent {
   constructor(private agencyService: AgencyService,
               private fb: FormBuilder,
               private snackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router,
+              private titleService: Title
+  ) {
+    this.titleService.setTitle('Create Agency');
   }
+
 
   onSubmit() {
     if (!this.agencyForm.valid) {

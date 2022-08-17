@@ -4,6 +4,7 @@ import { AgencyService } from "../agency.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Agency } from "../agency";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-edit-agency',
@@ -28,7 +29,10 @@ export class EditAgencyComponent implements OnInit {
     private route: ActivatedRoute,
     private agencyService: AgencyService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('Edit Agency');
   }
 
   ngOnInit() {

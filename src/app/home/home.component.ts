@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatSort } from "@angular/material/sort";
-import { LiveAnnouncer } from "@angular/cdk/a11y";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home',
@@ -15,11 +15,16 @@ import { LiveAnnouncer } from "@angular/cdk/a11y";
 export class HomeComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'city', 'country', 'countryCode', 'street', 'currency', 'contactPerson'];
 
-  agencies: MatTableDataSource<Agency> = new MatTableDataSource<Agency>();
+  dataSource: MatTableDataSource<Agency> = new MatTableDataSource<Agency>();
 
   @ViewChild(MatSort) sort: MatSort = new MatSort()
 
-  constructor(private agencyService: AgencyService, private router: Router, private snackBar: MatSnackBar, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private agencyService: AgencyService,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private titleService: Title
+  ) {
+    this.titleService.setTitle('Agency Management');
   }
 
   ngOnInit() {
@@ -27,12 +32,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.agencies.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
 
   refreshData() {
     this.agencyService.getAllAgencies().subscribe(agencies => {
-      this.agencies.data = agencies;
+      this.dataSource.data = agencies;
     });
   }
 
