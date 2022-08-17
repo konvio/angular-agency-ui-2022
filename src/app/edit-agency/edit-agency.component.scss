@@ -1,7 +1,7 @@
 .agency-form-container {
   text-align: center;
-  width: 400px;
-  margin: 200px auto 0;
+  width: 450px;
+  margin: 2rem auto 0;
 }
 
 .form-field {
@@ -12,4 +12,8 @@
   position: fixed;
   right: 2rem;
   bottom: 2rem;
+}
+
+.mat-form-field {
+  margin-bottom: 1rem;
 }

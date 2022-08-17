@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AgencyService } from "../agency.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Agency } from "../agency";
 
 @Component({
   selector: 'app-edit-agency',
@@ -11,42 +13,74 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class EditAgencyComponent implements OnInit {
 
   agencyForm: FormGroup = this.fb.group({
-    id: [''],
-    name: [null, [Validators.required]],
-    country: [null, [Validators.required]],
-    countryCode: [null, [Validators.required]],
-    city: [null, [Validators.required]],
-    street: [null, [Validators.required]],
-    settlementCurrency: [null, [Validators.required]],
-    contactPerson: [null, [Validators.required]]
+    id: [{value: '', disabled: true}],
+    name: ['', Validators.required],
+    country: [''],
+    countryCode: ['', [Validators.maxLength(5), Validators.pattern('[A-Z]+')]],
+    city: [''],
+    street: [''],
+    settlementCurrency: ['', Validators.required],
+    contactPerson: [''],
   });
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private agencyService: AgencyService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
-    let agencyId = this.route.snapshot.paramMap.get('id') || '';
-    this.agencyService.getAgencyById(agencyId).subscribe(agency => {
-      this.agencyForm.patchValue(agency);
-    })
+    this.loadAgency();
   }
 
+
   onSubmit() {
-    this.agencyService.createOrUpdateAgency(this.agencyForm.value).subscribe(() => {
-        console.log(this.agencyForm.value);
-      }
-    );
+    if (!this.agencyForm.valid) {
+      return;
+    }
+    this.agencyService.createOrUpdateAgency(this.getAgencyFormValue())
+      .subscribe(() => {
+          this.navigateToAgencies('Agency updated');
+        }
+      );
   }
 
   onDelete() {
-    let agencyId = this.agencyForm.value.id;
-    this.agencyService.deleteAgency(agencyId).subscribe(() => {
-      console.log(agencyId);
-      this.router.navigate(['/agencies']).then(r => console.log(r));
+    this.agencyService.deleteAgency(this.getAgencyIdParam()).subscribe(() => {
+      this.navigateToAgencies('Agency deleted');
     });
+  }
+
+  private loadAgency() {
+    let agencyId = this.getAgencyIdParam();
+    this.agencyService.getAgencyById(agencyId).subscribe(agency => {
+      this.onAgencyLoaded(agency);
+    }, error => {
+      console.log(error);
+      this.onAgencyNotLoaded(agencyId);
+    });
+  }
+
+  private onAgencyLoaded(agency: Agency) {
+    this.agencyForm.patchValue(agency);
+  }
+
+  private onAgencyNotLoaded(agencyId: string) {
+    this.navigateToAgencies(`Agency with id ${agencyId} not found`);
+  }
+
+  private getAgencyIdParam(): string {
+    return this.route.snapshot.paramMap.get('id') || '';
+  }
+
+  private getAgencyFormValue(): Agency {
+    return this.agencyForm.value;
+  }
+
+  private navigateToAgencies(message: string) {
+    this.snackBar.open(message);
+    this.router.navigate(['/agencies']);
   }
 }
