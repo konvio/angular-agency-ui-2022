@@ -8,12 +8,39 @@ table {
   bottom: 2rem;
 }
 
-.mat-row:hover .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  border-color: currentColor;
-}
-
 .mat-row .mat-cell {
   cursor: pointer;
+}
+
+// Columns Proportion
+.mat-column-id {
+  flex: 0 0 15%;
+}
+
+.mat-column-name {
+  flex: 0 0 20%;
+}
+
+.mat-column-city {
+  flex: 0 0 10%;
+}
+
+.mat-column-country {
+  flex: 0 0 10%;
+}
+
+.mat-column-countryCode {
+  flex: 0 0 10%;
+}
+
+.mat-column-street {
+  flex: 0 0 10%;
+}
+
+.mat-column-currency {
+  flex: 0 0 10%;
+}
+
+.mat-column-contactPerson {
+  flex: 0 0 15%;
 }

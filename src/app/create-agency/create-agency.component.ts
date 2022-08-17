@@ -28,7 +28,6 @@ export class CreateAgencyComponent {
               private router: Router) {
   }
 
-
   onSubmit() {
     if (!this.agencyForm.valid) {
       return;
@@ -37,7 +36,7 @@ export class CreateAgencyComponent {
     let agency = this.agencyForm.value;
 
     this.agencyService.createOrUpdateAgency(agency).subscribe((value: Agency) => {
-      this.snackBar.open(`${agency.name} created!`, 'Edit').onAction().subscribe(() => {
+      this.snackBar.open(`${agency.name} created`, 'Edit').onAction().subscribe(() => {
         this.router.navigate(['/agencies', value.id]);
       });
       this.router.navigate(['/agencies']);

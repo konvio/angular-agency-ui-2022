@@ -5,55 +5,61 @@
   <span>Agency Management</span>
 </mat-toolbar>
 
-<table mat-table [dataSource]="agencies">
+<mat-table [dataSource]="agencies" matSort>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.id | slice:-5}}</mat-cell>
+  </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
   <!-- City Column -->
   <ng-container matColumnDef="city">
-    <th mat-header-cell *matHeaderCellDef>City</th>
-    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
   </ng-container>
 
   <!-- Country Column -->
   <ng-container matColumnDef="country">
-    <th mat-header-cell *matHeaderCellDef>Country</th>
-    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
   </ng-container>
 
   <!-- Country Code Column -->
   <ng-container matColumnDef="countryCode">
-    <th mat-header-cell *matHeaderCellDef>Country Code</th>
-    <td mat-cell *matCellDef="let element"> {{element.countryCode}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country Code</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.countryCode}} </mat-cell>
   </ng-container>
 
   <!-- Street Column -->
   <ng-container matColumnDef="street">
-    <th mat-header-cell *matHeaderCellDef>Street</th>
-    <td mat-cell *matCellDef="let element"> {{element.street}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Street</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
   </ng-container>
 
   <!-- Currency Column -->
   <ng-container matColumnDef="currency">
-    <th mat-header-cell *matHeaderCellDef>Currency</th>
-    <td mat-cell *matCellDef="let element"> {{element.settlementCurrency}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header="settlementCurrency">Currency</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.settlementCurrency}} </mat-cell>
   </ng-container>
 
   <!-- Contact Person Column -->
   <ng-container matColumnDef="contactPerson">
-    <th mat-header-cell *matHeaderCellDef>Contact Person</th>
-    <td mat-cell *matCellDef="let element"> {{element.contactPerson}} </td>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Person</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.contactPerson}} </mat-cell>
   </ng-container>
 
   <!-- Rows -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row (click)=onRowClick(row) *matRowDef="let row; columns: displayedColumns;"></tr>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row (click)=onRowClick(row) *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-</table>
+</mat-table>
 
 <button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'">
   <mat-icon>add</mat-icon>

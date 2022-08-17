@@ -35,21 +35,21 @@ export class EditAgencyComponent implements OnInit {
     this.loadAgency();
   }
 
-
   onSubmit() {
     if (!this.agencyForm.valid) {
       return;
     }
     this.agencyService.createOrUpdateAgency(this.getAgencyFormValue())
-      .subscribe(() => {
-          this.navigateToAgencies('Agency updated');
+      .subscribe((value) => {
+          this.navigateToAgencies(`${value.name} updated`);
         }
       );
   }
 
   onDelete() {
-    this.agencyService.deleteAgency(this.getAgencyIdParam()).subscribe(() => {
-      this.navigateToAgencies('Agency deleted');
+    let agencyId = this.getAgencyIdParam();
+    this.agencyService.deleteAgency(agencyId).subscribe(() => {
+      this.navigateToAgencies(`Agency ID ${agencyId} deleted`);
     });
   }
 
@@ -68,7 +68,7 @@ export class EditAgencyComponent implements OnInit {
   }
 
   private onAgencyNotLoaded(agencyId: string) {
-    this.navigateToAgencies(`Agency with id ${agencyId} not found`);
+    this.navigateToAgencies(`Agency ID ${agencyId} not found`);
   }
 
   private getAgencyIdParam(): string {
