@@ -8,8 +8,10 @@ table {
   bottom: 2rem;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.mat-row:hover .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  border-color: currentColor;
 }
 
 .mat-row .mat-cell {

@@ -3,6 +3,7 @@ import { Agency } from "../agency";
 import { AgencyService } from "../agency.service";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   agencies!: Observable<Agency[]>;
 
-  constructor(private agencyService: AgencyService, private router: Router) {
+  constructor(private agencyService: AgencyService, private router: Router, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -31,6 +32,10 @@ export class HomeComponent implements OnInit {
   }
 
   _navigateToEdit(agency: Agency) {
-    this.router.navigate(['/agencies', agency.id]);
+    this.router.navigate(['/agencies', agency.id]).then(r => console.log(r));
+  }
+
+  onLogoClick() {
+    let snackBarRef = this.snackBar.open('Welcome to the Agency Management System!', 'Great!', {})
   }
 }

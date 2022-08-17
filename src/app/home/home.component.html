@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <button mat-icon-button>
+  <button mat-icon-button (click)="onLogoClick()">
     <mat-icon>storefront</mat-icon>
   </button>
   <span>Agency Management</span>
@@ -52,6 +52,7 @@
   <!-- Rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row (click)=onRowClick(row) *matRowDef="let row; columns: displayedColumns;"></tr>
+
 </table>
 
 <button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'">
