@@ -60,11 +60,11 @@
   <mat-row (click)=onRowClick(row) *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<div class="placeholder-container" *ngIf="dataSource.data.length == 0">
+<div class="placeholder-container" *ngIf="dataSource.data.length === 0">
   <h3>There are no agencies found. Its time to create your first agency!</h3>
 <button mat-raised-button color="primary" [routerLink]="'/create-agency'">GET STARTED</button>
 </div>
 
-<button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'" *ngIf="dataSource.data.length == 0">
+<button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'" *ngIf="dataSource.data.length === 0">
   <mat-icon>add</mat-icon>
 </button>
