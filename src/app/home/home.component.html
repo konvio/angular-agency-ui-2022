@@ -65,6 +65,6 @@
 <button mat-raised-button color="primary" [routerLink]="'/create-agency'">GET STARTED</button>
 </div>
 
-<button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'">
+<button mat-fab class="fab-add-agency" [routerLink]="'/create-agency'" *ngIf="dataSource.data.length == 0">
   <mat-icon>add</mat-icon>
 </button>
