@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 export class AgencyService {
 
-  private baseUrl = `http://localhost:8080/api/v1/agencies`;
+  private baseUrl = `/api/v1/agencies`;
 
   constructor(private http: HttpClient) {
   }
