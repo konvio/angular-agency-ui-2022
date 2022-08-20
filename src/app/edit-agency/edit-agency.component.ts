@@ -14,7 +14,7 @@ import { Title } from "@angular/platform-browser";
 export class EditAgencyComponent implements OnInit {
 
   agencyForm: FormGroup = this.fb.group({
-    id: [{value: '', disabled: true}],
+    id: [{disabled: true}],
     name: ['', Validators.required],
     country: [''],
     countryCode: ['', [Validators.maxLength(5), Validators.pattern('[A-Z]+')]],
