@@ -17,7 +17,6 @@ import { MatInputModule } from "@angular/material/input";
 import { EditAgencyComponent } from './edit-agency/edit-agency.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatSelectModule } from "@angular/material/select";
-import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -39,8 +38,7 @@ import { MatSortModule } from "@angular/material/sort";
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
-    MatSelectModule,
-    MatSortModule
+    MatSelectModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}

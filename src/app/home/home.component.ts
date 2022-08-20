@@ -1,10 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Agency } from "../agency";
 import { AgencyService } from "../agency.service";
 import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
-import { MatSort } from "@angular/material/sort";
 import { Title } from "@angular/platform-browser";
 
 @Component({
@@ -12,12 +11,10 @@ import { Title } from "@angular/platform-browser";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'city', 'country', 'countryCode', 'street', 'currency', 'contactPerson'];
 
   dataSource: MatTableDataSource<Agency> = new MatTableDataSource<Agency>();
-
-  @ViewChild(MatSort) sort: MatSort = new MatSort()
 
   constructor(private agencyService: AgencyService,
               private router: Router,
@@ -29,10 +26,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.refreshData();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
   }
 
   refreshData() {

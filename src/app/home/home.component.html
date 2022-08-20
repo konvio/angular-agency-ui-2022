@@ -5,53 +5,53 @@
   <span>Agency Management</span>
 </mat-toolbar>
 
-<mat-table [dataSource]="dataSource" matSort *ngIf="dataSource.data.length > 0">
+<mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length > 0">
 
   <!-- Name Column -->
   <ng-container matColumnDef="id">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.id | slice:-5}}</mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
   <!-- City Column -->
   <ng-container matColumnDef="city">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
   </ng-container>
 
   <!-- Country Column -->
   <ng-container matColumnDef="country">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Country</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.country}} </mat-cell>
   </ng-container>
 
   <!-- Country Code Column -->
   <ng-container matColumnDef="countryCode">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Country Code</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Country Code</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.countryCode}} </mat-cell>
   </ng-container>
 
   <!-- Street Column -->
   <ng-container matColumnDef="street">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Street</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Street</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.street}} </mat-cell>
   </ng-container>
 
   <!-- Currency Column -->
   <ng-container matColumnDef="currency">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Currency</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Currency</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.settlementCurrency}} </mat-cell>
   </ng-container>
 
   <!-- Contact Person Column -->
   <ng-container matColumnDef="contactPerson">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Contact Person</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Contact Person</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.contactPerson}} </mat-cell>
   </ng-container>
 
