@@ -10,15 +10,6 @@
 
     <!-- Name-->
     <mat-form-field class="form-field" appearance="outline">
-      <mat-label>ID</mat-label>
-      <input matInput formControlName="id" placeholder="ex. John Doe" required>
-      <mat-error *ngIf="agencyForm.get('id')?.invalid">
-        <span>Agency not loaded</span>
-      </mat-error>
-    </mat-form-field>
-
-    <!-- Name-->
-    <mat-form-field class="form-field" appearance="outline">
       <mat-label>Agency Name</mat-label>
       <input matInput formControlName="name" placeholder="ex. John Doe">
       <mat-error *ngIf="agencyForm.get('name')?.invalid">
